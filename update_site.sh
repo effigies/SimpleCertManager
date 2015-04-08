@@ -16,7 +16,7 @@ cat > $HOST/openssl.cnf <<END
 distinguished_name = req_distinguished_name
 prompt             = no
 default_md         = sha256
- 
+
 [ req_distinguished_name ]
 C            = US
 ST           = None
