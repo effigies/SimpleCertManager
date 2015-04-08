@@ -1,0 +1,13 @@
+[ req ]
+distinguished_name = req_distinguished_name
+prompt             = no
+default_md         = sha256
+
+[ req_distinguished_name ]
+C            = US
+ST           = None
+L            = None
+O            = sub.domain.tld
+OU           = sub.domain.tld
+CN           = sub.domain.tld
+emailAddress = postmaster@sub.domain.tld
