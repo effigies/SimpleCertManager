@@ -1,6 +1,6 @@
 This script grew, as many a script does, out of looking up and repeating the
 same actions, in this case for creating and managing SSL certificates for a
-number of sites. The production of a certificate is reasonable managed with
+number of sites. The production of a certificate is reasonably managed with
 Makefiles, so this script creates a directory for a site and generates a
 Makefile and config file for that site.
 
