@@ -70,17 +70,19 @@ $HOST.csr: $HOST.key
 	@cat $HOST.csr
 	@echo "Save the resulting certificate as local.pem"
 
-$HOST.pem: local.pem sub.class1.server.ca.pem
-	cat local.pem sub.class1.server.ca.pem > $HOST.pem
+$HOST.pem: local.pem sca.server1.crt
+	cat local.pem sca.server1.crt > $HOST.pem
 
-sub.class1.server.ca.pem:
-	curl -O https://www.startssl.com/certs/sub.class1.server.ca.pem
+sca.server1.crt:
+	curl -O https://startssl.com/certs/sca.server1.crt
+	dos2unix sca.server1.crt
 
-ca.pem:
-	curl -O https://www.startssl.com/certs/ca.pem
+ca.crt:
+	curl -O https://startssl.com/certs/ca.crt
+	dos2unix ca.crt
 
-startssl.stapling.pem: ca.pem sub.class1.server.ca.pem
-	cat ca.pem sub.class1.server.ca.pem > startssl.stapling.pem
+startssl.stapling.pem: ca.crt sca.server1.crt
+	cat ca.crt sca.server1.crt > startssl.stapling.pem
 
 prep: $HOST.key $HOST.pem startssl.stapling.pem
 
