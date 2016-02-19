@@ -40,17 +40,19 @@ sub.domain.tld.csr: sub.domain.tld.key
 	@cat sub.domain.tld.csr
 	@echo "Save the resulting certificate as local.pem"
 
-sub.domain.tld.pem: local.pem sub.class1.server.ca.pem
-	cat local.pem sub.class1.server.ca.pem > sub.domain.tld.pem
+sub.domain.tld.pem: local.pem sca.server1.crt
+	cat local.pem sca.server1.crt > sub.domain.tld.pem
 
-sub.class1.server.ca.pem:
-	curl -O https://www.startssl.com/certs/sub.class1.server.ca.pem
+sca.server1.crt:
+	curl -O https://startssl.com/certs/sca.server1.crt
+	dos2unix sca.server1.crt
 
-ca.pem:
-	curl -O https://www.startssl.com/certs/ca.pem
+ca.crt:
+	curl -O https://startssl.com/certs/ca.crt
+	dos2unix ca.crt
 
-startssl.stapling.pem: ca.pem sub.class1.server.ca.pem
-	cat ca.pem sub.class1.server.ca.pem > startssl.stapling.pem
+startssl.stapling.pem: ca.crt sca.server1.crt
+	cat ca.crt sca.server1.crt > startssl.stapling.pem
 
 prep: sub.domain.tld.key sub.domain.tld.pem startssl.stapling.pem
 
